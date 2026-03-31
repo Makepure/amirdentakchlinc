@@ -367,30 +367,57 @@
         }
 
         .chatbot-toggle {
-            width: 60px;
-            height: 60px;
-            background: #4aa3df;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
         }
 
         .chatbot-toggle:hover {
             transform: scale(1.1);
+            animation: none;
+        }
+
+        .ai-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff6b6b;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 6px;
+            border-radius: 20px;
+            font-weight: bold;
         }
 
         .chatbot-window {
             position: absolute;
             bottom: 80px;
             right: 0;
-            width: 350px;
-            height: 500px;
+            width: 380px;
+            height: 550px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -404,7 +431,7 @@
         }
 
         .chatbot-header {
-            background: #2c5f8a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 1rem;
             display: flex;
@@ -415,6 +442,9 @@
         .chatbot-header h3 {
             margin: 0;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .close-chat {
@@ -426,6 +456,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 1rem;
+            background: #f8f9fa;
         }
 
         .message {
@@ -450,12 +481,13 @@
         }
 
         .message.bot .message-content {
-            background: #f0f0f0;
+            background: white;
             color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .message.user .message-content {
-            background: #4aa3df;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
 
@@ -464,6 +496,7 @@
             border-top: 1px solid #e0e0e0;
             display: flex;
             gap: 0.5rem;
+            background: white;
         }
 
         .chat-input {
@@ -475,7 +508,7 @@
         }
 
         .send-btn {
-            background: #4aa3df;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -506,11 +539,33 @@
             margin: 0.5rem 0;
         }
 
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 0.8;
+        }
+
         .footer-bottom {
             text-align: center;
             margin-top: 2rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .developer-credit {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .developer-credit a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -527,8 +582,14 @@
                 grid-template-columns: 1fr;
             }
             .chatbot-window {
-                width: 300px;
-                height: 450px;
+                width: 320px;
+                height: 500px;
+                right: -10px;
+            }
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -677,34 +738,42 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Dr. Amir Dental Clinic. All rights reserved.</p>
+            <p>&copy; 2026 Dr. Amir Dental Clinic. All rights reserved.</p>
+            <div class="developer-credit">
+                Developed by <strong>Addis Power Web & AI Technology</strong> | 
+                <i class="fab fa-telegram"></i> <a href="https://t.me/addis_power" target="_blank">@addis_power</a> | 
+                <i class="fas fa-envelope"></i> <a href="mailto:agoodperception@gmail.com">agoodperception@gmail.com</a>
+            </div>
         </div>
     </footer>
 
     <!-- Chatbot -->
     <div class="chatbot-container">
         <div class="chatbot-toggle" onclick="toggleChat()">
-            <i class="fas fa-comment-dental"></i>
+            <i class="fas fa-robot"></i>
+            <span class="ai-badge">AI</span>
         </div>
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
-                <h3><i class="fas fa-comment-dental"></i> Dental Assistant AI</h3>
+                <h3><i class="fas fa-microchip"></i> AI Dental Assistant <i class="fas fa-brain"></i></h3>
                 <div class="close-chat" onclick="toggleChat()">×</div>
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot">
                     <div class="message-content">
-                        Hello! I'm Dr. Amir's dental assistant. How can I help you today? You can ask me about:
+                        <i class="fas fa-robot"></i> <strong>AI Assistant:</strong><br>
+                        Hello! I'm Dr. Amir's AI Dental Assistant powered by advanced artificial intelligence. How can I help you today? You can ask me about:
                         <br>• Services & treatments
                         <br>• Appointment booking
                         <br>• Dental care tips
                         <br>• Clinic hours
+                        <br>• Insurance & pricing
                     </div>
                 </div>
             </div>
             <div class="chat-input-area">
                 <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
-                <button class="send-btn" onclick="sendMessage()">Send</button>
+                <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
             </div>
         </div>
     </div>
@@ -771,36 +840,38 @@
             document.getElementById('cards').scrollIntoView({behavior: 'smooth'});
         });
 
-        // Chatbot responses
+        // AI Chatbot responses
         const botResponses = {
-            'hello': 'Hello! How can I assist you with your dental needs today?',
-            'hi': 'Hi there! Welcome to Dr. Amir Dental Clinic. How may I help you?',
-            'services': 'We offer: General Dentistry, Cosmetic Dentistry, Orthodontics, Root Canal Therapy, Pediatric Dentistry, and Dental Implants. Which service interests you?',
-            'appointment': 'To book an appointment, please fill out the registration form on our website. You can also call us at +1 234 567 890.',
-            'hours': 'Our working hours are: Monday-Friday 9:00 AM - 8:00 PM, Saturday 9:00 AM - 5:00 PM. We are closed on Sundays.',
-            'price': 'Treatment costs vary based on the service. We recommend scheduling a consultation for a personalized quote. Most insurance plans are accepted!',
-            'insurance': 'Yes, we accept most major insurance plans. Please bring your insurance card to your appointment.',
-            'emergency': 'For dental emergencies, please call us immediately at +1 234 567 890. We prioritize emergency cases.',
-            'teeth whitening': 'Our teeth whitening treatment takes about 1 hour and can brighten your teeth by 4-8 shades. Results last 6-12 months with proper care.',
-            'braces': 'We offer traditional braces and Invisalign. Treatment duration is typically 12-24 months depending on the case.',
-            'root canal': 'Root canal treatment is performed under local anesthesia to ensure you\'re comfortable. It usually takes 1-2 appointments.',
-            'children': 'Yes, we specialize in pediatric dentistry! We create a fun, friendly environment for children of all ages.',
-            'location': 'We are located at 123 Dental Street, Medical District. Free parking is available!',
-            'thanks': 'You\'re welcome! Is there anything else I can help you with?',
-            'thank you': 'You\'re welcome! Is there anything else I can help you with?'
+            'hello': 'Hello! I\'m your AI Dental Assistant. How can I help you with your dental needs today? 😊',
+            'hi': 'Hi there! Welcome to Dr. Amir Dental Clinic. I\'m here to assist you 24/7. What would you like to know? 🤖',
+            'services': 'We offer: 🦷 General Dentistry, ✨ Cosmetic Dentistry, 📐 Orthodontics, 🔧 Root Canal Therapy, 👶 Pediatric Dentistry, and 💎 Dental Implants. Which service interests you?',
+            'appointment': 'To book an appointment, please fill out the registration form on our website. You can also call us at +1 234 567 890. I can help you with any questions before you book! 📅',
+            'hours': 'Our working hours are: Monday-Friday 9:00 AM - 8:00 PM, Saturday 9:00 AM - 5:00 PM. We are closed on Sundays. 🕐',
+            'price': 'Treatment costs vary based on the service. We recommend scheduling a consultation for a personalized quote. Most insurance plans are accepted! 💰',
+            'insurance': 'Yes, we accept most major insurance plans. Please bring your insurance card to your appointment. Would you like me to check if we accept your specific insurance? 🏥',
+            'emergency': 'For dental emergencies, please call us immediately at +1 234 567 890. We prioritize emergency cases and offer same-day appointments when possible! 🚨',
+            'teeth whitening': 'Our professional teeth whitening treatment takes about 1 hour and can brighten your teeth by 4-8 shades. Results last 6-12 months with proper care. ✨',
+            'braces': 'We offer traditional braces and Invisalign. Treatment duration is typically 12-24 months depending on the case. We provide free consultations! 😁',
+            'root canal': 'Root canal treatment is performed under local anesthesia to ensure you\'re comfortable. It usually takes 1-2 appointments. Modern techniques make it virtually painless! 🦷',
+            'children': 'Yes, we specialize in pediatric dentistry! We create a fun, friendly environment for children of all ages. First visit is free! 👶',
+            'location': 'We are located at 123 Dental Street, Medical District. Free parking is available! 🅿️',
+            'thanks': 'You\'re welcome! Is there anything else I can help you with? I\'m here 24/7 to assist you! 🤖',
+            'thank you': 'You\'re welcome! Is there anything else I can help you with? I\'m here 24/7 to assist you! 🤖',
+            'ai': 'I\'m an AI-powered dental assistant designed to help answer your questions about dental care, appointments, and our services. I use advanced artificial intelligence to provide accurate information! 🧠',
+            'robot': 'I\'m an AI assistant, not a robot! I use artificial intelligence to help you with your dental questions. Pretty cool, right? 😊'
         };
 
         function getBotResponse(message) {
             const lowerMsg = message.toLowerCase();
             
             // Check for keywords
-            if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
+            if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
                 return botResponses['hello'];
             } else if (lowerMsg.includes('service') || lowerMsg.includes('treatment')) {
                 return botResponses['services'];
             } else if (lowerMsg.includes('appointment') || lowerMsg.includes('book')) {
                 return botResponses['appointment'];
-            } else if (lowerMsg.includes('hour') || lowerMsg.includes('time')) {
+            } else if (lowerMsg.includes('hour') || lowerMsg.includes('time') || lowerMsg.includes('open')) {
                 return botResponses['hours'];
             } else if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('fee')) {
                 return botResponses['price'];
@@ -820,8 +891,10 @@
                 return botResponses['location'];
             } else if (lowerMsg.includes('thank')) {
                 return botResponses['thanks'];
+            } else if (lowerMsg.includes('ai') || lowerMsg.includes('artificial intelligence')) {
+                return botResponses['ai'];
             } else {
-                return "I'd be happy to help! Could you please rephrase your question? You can ask about our services, appointments, hours, or dental care tips.";
+                return "I'm your AI Dental Assistant! I can help with questions about our services, appointments, hours, pricing, insurance, and dental care tips. What would you like to know? 🤖";
             }
         }
 
@@ -845,7 +918,7 @@
             setTimeout(() => {
                 const botMessageDiv = document.createElement('div');
                 botMessageDiv.className = 'message bot';
-                botMessageDiv.innerHTML = `<div class="message-content">${response}</div>`;
+                botMessageDiv.innerHTML = `<div class="message-content"><i class="fas fa-robot"></i> <strong>AI Assistant:</strong><br>${response}</div>`;
                 chatMessages.appendChild(botMessageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 500);
@@ -913,13 +986,12 @@
 
         // Show notification function
         function showNotification(message) {
-            // Create simple toast notification
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
                 bottom: 20px;
                 left: 20px;
-                background: #4aa3df;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 color: white;
                 padding: 1rem 2rem;
                 border-radius: 10px;
@@ -932,6 +1004,22 @@
                 notification.remove();
             }, 3000);
         }
+
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
