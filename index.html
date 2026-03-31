@@ -556,16 +556,73 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .developer-credit {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
+        /* Developer Contact Section */
+        .developer-contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 900px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .developer-credit a {
-            color: #ff6b6b;
+        .developer-contact h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .developer-contact p {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
             text-decoration: none;
+            border-radius: 50px;
             font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .contact-btn.telegram {
+            background: #0088cc;
+            color: white;
+        }
+
+        .contact-btn.email {
+            background: #ea4335;
+            color: white;
+        }
+
+        .developer-credit {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         @media (max-width: 768px) {
@@ -591,6 +648,14 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-btn {
+                width: 80%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -605,6 +670,7 @@
                 <li><a href="#form">Register</a></li>
                 <li><a href="#cards">Patients</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#developer">Developer</a></li>
             </ul>
             <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
@@ -716,6 +782,25 @@
         </div>
     </section>
 
+    <!-- Developer Contact Section -->
+    <section id="developer" class="form-section">
+        <div class="developer-contact">
+            <h3><i class="fas fa-code"></i> Contact Developer</h3>
+            <p>Need a professional website like this? I'm here to help! I specialize in web development, AI integration, and modern web technologies.</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/addis_power" target="_blank" class="contact-btn telegram">
+                    <i class="fab fa-telegram"></i> @addis_power
+                </a>
+                <a href="mailto:agoodperception@gmail.com" class="contact-btn email">
+                    <i class="fas fa-envelope"></i> agoodperception@gmail.com
+                </a>
+            </div>
+            <div class="developer-credit">
+                <i class="fas fa-microchip"></i> <strong>Addis Power Web & AI Technology</strong> | Creating smart, professional websites with AI integration
+            </div>
+        </div>
+    </section>
+
     <footer id="contact" class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -740,7 +825,7 @@
         <div class="footer-bottom">
             <p>&copy; 2026 Dr. Amir Dental Clinic. All rights reserved.</p>
             <div class="developer-credit">
-                Developed by <strong>Addis Power Web & AI Technology</strong> | 
+                <i class="fas fa-crown"></i> Developed by <strong>Addis Power Web & AI Technology</strong> | 
                 <i class="fab fa-telegram"></i> <a href="https://t.me/addis_power" target="_blank">@addis_power</a> | 
                 <i class="fas fa-envelope"></i> <a href="mailto:agoodperception@gmail.com">agoodperception@gmail.com</a>
             </div>
@@ -864,7 +949,6 @@
         function getBotResponse(message) {
             const lowerMsg = message.toLowerCase();
             
-            // Check for keywords
             if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
                 return botResponses['hello'];
             } else if (lowerMsg.includes('service') || lowerMsg.includes('treatment')) {
@@ -904,17 +988,14 @@
             
             if (message === '') return;
             
-            // Add user message
             const chatMessages = document.getElementById('chatMessages');
             const userMessageDiv = document.createElement('div');
             userMessageDiv.className = 'message user';
             userMessageDiv.innerHTML = `<div class="message-content">${message}</div>`;
             chatMessages.appendChild(userMessageDiv);
             
-            // Get bot response
             const response = getBotResponse(message);
             
-            // Add bot message with delay
             setTimeout(() => {
                 const botMessageDiv = document.createElement('div');
                 botMessageDiv.className = 'message bot';
@@ -923,7 +1004,6 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 500);
             
-            // Clear input and scroll
             input.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
@@ -954,7 +1034,6 @@
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
-                // Close mobile menu if open
                 if (window.innerWidth <= 768) {
                     document.querySelector('.nav-links').style.display = 'none';
                 }
@@ -1005,7 +1084,6 @@
             }, 3000);
         }
 
-        // Add animation keyframes
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
